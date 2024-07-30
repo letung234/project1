@@ -1,0 +1,41 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+    +alert-error(5000)
+    +alert-success(5000)
+    
+    if (product.title)
+        h1.mb-4.product-title #{product.title}
+    
+    if (product.price)
+        div.mb-4.product-price Giá: #{product.price}
+    
+    if (product.discountPercentage)
+        div.mb-4.product-discount Giá giảm: #{product.discountPercentage}%
+    
+    if (product.stock)
+        div.mb-4.product-stock Tồn kho: #{product.stock}
+    
+    if (product.thumbnail)
+        div.mb-4.product-thumbnail
+            img(
+                src=product.thumbnail
+                alt=product.title
+                class="thumbnail-image"
+            )
+    
+    if (product.status)
+        div.mb-4.product-status
+            span Trạng Thái:
+            if (product.status == "active")
+                span.badge.badge-success Hoạt Động
+            else 
+                span.badge.badge-danger Dừng Hoạt Động
+    
+    if (product.position)
+        div.mb-4.product-position Vị trí: #{product.position}
+    
+    if (product.description)
+        div.mb-4.product-description #{product.description}
+    script(src="/admin/js/product.js")

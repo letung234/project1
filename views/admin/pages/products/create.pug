@@ -1,0 +1,108 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+block main
+  +alert-error(5000)
+  h1.mb-4 Thêm mới sản phẩm
+
+  form(
+    action=`${prefixAdmin}/products/create`
+    id="form-create-product"
+    method="POST"
+    enctype="multipart/form-data"
+  )
+    .form-group
+      label(for="title") Tiêu đề
+      input.form-control(
+        type="text"
+        id="title"
+        name="title"
+        required
+      )
+    .form-group
+      label(for="desc") Mô tả
+      textarea.form-control(
+        id="desc"
+        name="desc"
+        rows="5"
+      )
+    .form-group
+      label(for="price") Giá
+      input.form-control(
+        type="number"
+        id="price"
+        name="price"
+        value="0"
+        min="0"
+        required
+      )
+    .form-group
+      label(for="discount") % Giảm giá
+      input.form-control(
+        type="number"
+        id="discount"
+        name="discountPercentage"
+        value="0"
+        min="0"
+        max="100"
+      )
+    .form-group
+      label(for="stock") Số lượng
+      input.form-control(
+        type="number"
+        id="stock"
+        name="stock"
+        value="0"
+        min="0"
+        required
+      )
+    div(
+      class="form-group"
+      upload-image
+    )
+      label(for="thumbnail" style="border:none;") Ảnh
+      input.form-control(
+        type="file"
+        id="thumbnail"
+        name="thumbnail"
+        class="form-control-file"
+        accept="image/"
+        upload-image-input
+      )
+      img(
+        src=""
+        upload-image-preview
+        class = "image-preview"
+        style="width:150px; height:auto; margin-top:15px; border:1px solid #ddd; padding:15px; border-radius: 5px;"
+        
+      )
+    .form-group
+      label(for="position") Vị trí
+      input.form-control(
+        type="number"
+        id="position"
+        name="position"
+        min="0"
+        placeholder="Tự động tăng"
+ 
+      )
+    .form-group.form-check
+      input.form-check-input(
+        type="radio"
+        id="statusActive"
+        name="status"
+        value="active"
+        checked
+      )
+      label.form-check-label(for="statusActive" style="margin-right:30px;") Hoạt Động
+      input.form-check-input(
+        type="radio"
+        id="statusInactive"
+        name="status"
+        value="inactive"
+      )
+      label.form-check-label(for="statusInactive") Không Hoạt Động
+
+    .form-group
+      button.btn.btn-primary(type="submit") Tạo mới
+
+  script(src="/admin/js/product.js")

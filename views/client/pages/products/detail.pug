@@ -1,0 +1,33 @@
+extends ../../layouts/default.pug
+include ../../mixins/boxhead.pug
+
+block main
+    .container.my-3
+        .row
+            .col-12
+                h1 Tiêu đề sản phẩm
+                if product.title
+                    h1.mb-4.product-title #{product.title}
+                
+                if product.price
+                    div.mb-4.product-price Giá: #{product.price}
+                
+                if product.discountPercentage
+                    div.mb-4.product-discount Giá giảm: #{product.discountPercentage}%
+                
+                if product.stock
+                    div.mb-4.product-stock Tồn kho: #{product.stock}
+                
+                if product.thumbnail
+                    div.mb-4.product-thumbnail
+                        img(
+                            src=product.thumbnail
+                            alt=product.title
+                            class="thumbnail-image"
+                        )
+                
+                if product.position
+                    div.mb-4.product-position Vị trí: #{product.position}
+                
+                if product.description
+                    div.mb-4.product-description #{product.description}
