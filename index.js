@@ -8,6 +8,7 @@ const systemConfig = require('./config/system'); // Tệp cấu hình hệ thố
 const route = require("./routes/client/index"); // Tệp định tuyến cho client
 const routeAdmin = require("./routes/admin/index"); // Tệp định tuyến cho admin
 const database = require('./config/database'); // Tệp cấu hình và kết nối cơ sở dữ liệu
+
 const multer= require('multer');
 const cookieParser = require('cookie-parser');
 const session = require("express-session");
