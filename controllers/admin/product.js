@@ -28,9 +28,19 @@ module.exports.index = async (req, res) => {
             currentPage: req.query.page || 1
         }, req.query, countProducts);
 
+        // Sort
+        let sort = {};
+        if(req.query.sortKey && req.query.sortValue){
+            sort[req.query.sortKey] = req.query.sortValue
+        }
+        else{
+            sort.position = 'desc';
+        }
+        
+        // End Sort
         // Get products with pagination
         const products = await Product.find(find)
-            .sort({position :"desc"})
+            .sort(sort)
             .limit(objectPagination.limitItems)
             .skip(objectPagination.skip);
             
@@ -154,7 +164,7 @@ module.exports.updateProduct = async (req, res) => {
         req.body.price = parseInt(req.body.price);
         req.body.stock = parseInt(req.body.stock);
         req.body.discountPercentage = parseInt(req.body.discountPercentage);
-        console.log(req.file.filename);
+     
         const { id } = req.params;
         await Product.findByIdAndUpdate(id, req.body);
 
